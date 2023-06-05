@@ -1,0 +1,54 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fbe4ec;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #040102;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 1rem;
+}
+
+.message {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #040102;
+}
+
+.grid {
+  background: #debac6;
+  padding: 1rem;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.cell {
+  background: #f7dfe1;
+  padding: 5rem;
+  border-radius: 5px;
+}
+
+.reset-button {
+  background-color: #670f2d;
+  color: #fbe4ec;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
