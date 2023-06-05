@@ -59,3 +59,55 @@ const GameController = (() => {
 
     return { getCurrentPlayer, getGameOver, getWinner, getWinningCombos, switchPlayer, checkWinner, checkTie, resetGame };
 })();
+
+const DisplayController = (() => {
+    const cells = document.querySelectorAll(".cell");
+    const message = document.querySelector(".message");
+    const resetButton = document.querySelector(".reset-button");
+
+    const render = () => {
+        cells.forEach((cell, index) => {
+            cell.textContent = Gameboard.getBoard()[index];
+        });
+        if (GameController.getGameOver()) {
+            if (GameController.getWinner()) {
+                message.textContent = `${GameController.getWinner().getName()} wins!`;
+            } else {
+                message.textContent = "It's a tie!";
+            }
+        } else {
+            message.textContent = `${GameController.getCurrentPlayer().getName()}'s turn`;
+        }
+    }
+
+    const addCellListeners = () => {
+        cells.forEach((cell, index) => {
+            cell.addEventListener("click", () => {
+                if (!GameController.getGameOver() && Gameboard.getBoard()[index] === "") {
+                    Gameboard.setBoard(index, GameController.getCurrentPlayer().getMarker());
+                    GameController.checkWinner();
+                    GameController.checkTie();
+                    GameController.switchPlayer();
+                    render();
+                }
+            });
+        });
+    }
+
+    const addResetButtonListener = () => {
+        resetButton.addEventListener("click", () => {
+            GameController.resetGame();
+            render();
+        });
+    }
+
+    const init = () => {
+        render();
+        addCellListeners();
+        addResetButtonListener();
+    }
+
+    return { init };
+})();
+
+DisplayController.init();
